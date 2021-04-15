@@ -1,0 +1,46 @@
+.menu {  
+  background-color: white;
+}
+.menu__inner:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.menu__inner {
+  padding : 0px 140px;
+  min-width: 1200px;
+  height: 75px;
+  border-bottom: 1px solid #e6e6e6;}
+
+
+.menu__logo {
+  float: left;
+  font-size: 20px;  
+  padding: 23px;
+ 
+}
+
+.menu__logo span a {
+  font-family: "Noto Sans CJK KR";
+  font-weight: 900; 
+  color: black;
+}
+
+i {
+  color: black;
+  font-size: 1.4rem;
+  filter: invert(0.6);
+}
+
+.menu__left {
+  float: left;
+  padding: 23px;
+}
+
+.menu__right {
+  float: right;
+  padding: 23px;
+ 
+}
+

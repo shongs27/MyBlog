@@ -14,6 +14,8 @@ import SomethingPage from "./components/LandingPage/section/SomethingPage";
 import PersonalPage from "./components/LandingPage/section/PersonalPage";
 import JavascriptPage from "./components/LandingPage/section/JavascriptPage";
 import AlgorithmPage from "./components/LandingPage/section/AlgorithmPage";
+import UploadPage from "./components/UploadPage/UploadPage";
+import PersonalDetailPage from "./components/LandingPage/detail/PersonalDetailPage";
 
 function App() {
   return (
@@ -22,11 +24,10 @@ function App() {
         <NavBar />
         <div
           style={{
-            paddingTop: "69px",
+            paddingTop: "5px",
             minHeight: "calc(100vh - 340px)",
           }}
         >
-          <hr />
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/personal" component={PersonalPage} />
@@ -36,6 +37,12 @@ function App() {
             <Route exact path="/git" component={GitPage} />
             <Route exact path="/algorithm" component={AlgorithmPage} />
             <Route exact path="/book" component={BookPage} />
+            <Route exact path="/post/upload" component={UploadPage} />
+            <Route
+              exact
+              path="/post/personal/:postId"
+              component={PersonalDetailPage}
+            />
           </Switch>
         </div>
         <AsideBar />
