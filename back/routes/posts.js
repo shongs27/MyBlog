@@ -5,6 +5,31 @@ const { Something } = require("../models/Something");
 const { Javascript } = require("../models/Javascript");
 const { React } = require("../models/React");
 
+router.get("/getAnotherPostId", (req, res) => {
+  Personal.find()
+    .select("_id")
+    .exec((err, doc) => {
+      if (err) return res.json({ try: false, err });
+      return res.status(200).json({ try: true, doc });
+    });
+});
+
+router.post("/getPersonalAnother", (req, res) => {
+  Personal.find()
+    .ne("_id", req.body.postId)
+    .exec((err, doc) => {
+      if (err) return res.json({ try: false, err });
+      return res.status(200).json({ try: true, doc });
+    });
+});
+
+router.post("/getPersonalDetail", (req, res) => {
+  Personal.findOne({ _id: req.body.postId }, (err, doc) => {
+    if (err) return res.json({ try: false, err });
+    return res.status(200).json({ try: true, doc });
+  });
+});
+
 router.post("/upload", (req, res) => {
   console.log(req.body);
   const category = req.body.category;

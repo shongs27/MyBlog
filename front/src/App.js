@@ -6,7 +6,7 @@ import AsideBar from "./components/Footer/AsideBar";
 import FooterBar from "./components/Footer/FooterBar";
 import NavBar from "./components/Nav/NavBar";
 
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./components/LandingPage/section/LandingPage";
 import BookPage from "./components/LandingPage/section/BookPage";
 import GitPage from "./components/LandingPage/section/GitPage";
 import ReactPage from "./components/LandingPage/section/ReactPage";
@@ -45,6 +45,7 @@ function App() {
             />
           </Switch>
         </div>
+
         <AsideBar />
         <FooterBar />
       </Suspense>

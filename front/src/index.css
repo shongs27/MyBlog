@@ -44,12 +44,8 @@ code {
     padding: 28px 0;
 }
 
-.post-item .title {
-  display:block;
-  width: auto;
-  margin-bottom: 3px;
-  padding: 10px 0 0;
-  font-size: 1.125em;
-}
 
+.replies *:not(#di *) {
+  margin: 5px;
+}
 

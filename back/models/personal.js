@@ -5,6 +5,7 @@ const PersonalSchema = mongoose.Schema(
   {
     title: {
       type: String,
+      index: true,
     },
     content: {
       type: String,

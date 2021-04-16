@@ -1,42 +1,88 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { message } from "antd";
+import { message, Button } from "antd";
+import moment from "moment";
+import Comment from "./section/Comment";
+import OrderBar from "./section/OrderBar";
 
 function PersonalDetailPage(props) {
-  console.log(props.match.params.postId);
   const postId = props.match.params.postId;
   const variable = { postId };
 
-  const [PersonalDetail, setPersonalDetail] = useState({});
-
+  const [PersonalDetail, setPersonalDetail] = useState([]);
+  const [PersonalAnother, setPersonalAnother] = useState([]);
+  // console.log("세부적인 항목", PersonalDetail);
+  // console.log("다른 것들", PersonalAnother);
   useEffect(() => {
+    axios.post("/api/post/getPersonalAnother", variable).then((res) => {
+      if (res.data.try) {
+        setPersonalAnother(res.data.doc);
+      } else {
+        console.log(res.data.err);
+      }
+    });
+
     axios.post("/api/post/getPersonalDetail", variable).then((res) => {
       if (res.data.try) {
-        setPersonalDetail(res.data.personalDetail);
+        setPersonalDetail(res.data.doc);
       } else {
         message.error("개인적인 이야기를 볼 수 없습니다");
       }
     });
-  });
+  }, []);
 
   return (
     <article id="content">
       <div className="post-header">
         <h2>개인적인 이야기</h2>
-        <h1></h1>
-        <p>사용자 </p>
+        <h1>{PersonalDetail.title}</h1>
+        <p>
+          {PersonalDetail.createdAt === PersonalDetail.updatedAt
+            ? moment(PersonalDetail.createdAt).format("MMMM Do YYYY, a h:mm")
+            : `${moment(PersonalDetail.createdAt).format(
+                "MMM Do YY"
+              )} | ${moment(PersonalDetail.updatedAt).format("MMM Do YY")}`}
+        </p>
       </div>
       <div className="inner">
         <div className="post-item">
-          <a href="/156">
-            <span className="title">자바스크립트의 불변성</span>
-            <span className="excerpt">
-              일단 대충 이런이 이야기들을 하고 있다고
-              알아주세요어배ㅑ러뱌ㅐ러배러ㅐ뱌ㅓ래ㅑ버랩더래ㅑ버대랴ㅓ배랴ㅓ댜배러ㅐㅂ더ㅐ랴버ㅐㄷ러ㅐ뱌ㅓㄷ래ㅑ벌
-            </span>
-            <span className="more">더보기 ::after</span>
-          </a>
+          <br />
+          <br />
+          <p>{PersonalDetail.content}</p>
         </div>
+        {/* 좋아요 버튼 */}
+
+        {/* 구독 버튼 */}
+        <Button type="primary" ghost>
+          구독
+        </Button>
+        <br />
+        <br />
+        <br />
+        <div
+          className="anotherCategory"
+          style={{ border: "2px solid #e6e6e6" }}
+        >
+          <div className="anotherCategory__title">
+            <a href="/personal" style={{ color: "blue" }}>
+              '개인적인 이야기'
+            </a>
+            카테고리의 다른 글
+          </div>
+
+          <div className="anotherCategory__list">
+            <hr />
+            <ul>
+              {PersonalAnother.map((value, index) => (
+                <a href={`${value._id}`}>
+                  <li key={index}>{value.title}</li>
+                </a>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <Comment />
+        <OrderBar />
       </div>
     </article>
   );
