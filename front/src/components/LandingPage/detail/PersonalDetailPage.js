@@ -6,29 +6,39 @@ import Comment from "./section/Comment";
 import OrderBar from "./section/OrderBar";
 
 function PersonalDetailPage(props) {
-  const postId = props.match.params.postId;
-  const variable = { postId };
-
+  const [postId, setpostId] = useState(`${props.match.params.postId}`);
   const [PersonalDetail, setPersonalDetail] = useState([]);
   const [PersonalAnother, setPersonalAnother] = useState([]);
+  const variable = { postId };
   // console.log("세부적인 항목", PersonalDetail);
   // console.log("다른 것들", PersonalAnother);
+  console.log("몇번쨰 재생되고 있니?", variable);
   useEffect(() => {
-    axios.post("/api/post/getPersonalAnother", variable).then((res) => {
-      if (res.data.try) {
-        setPersonalAnother(res.data.doc);
-      } else {
-        console.log(res.data.err);
-      }
-    });
+    const another = () => {
+      return axios
+        .post("/api/post/getPersonalAnother", variable)
+        .then((res) => {
+          if (res.data.try) {
+            setPersonalAnother(res.data.doc);
+          } else {
+            console.log(res.data.err);
+          }
+        });
+    };
 
-    axios.post("/api/post/getPersonalDetail", variable).then((res) => {
-      if (res.data.try) {
-        setPersonalDetail(res.data.doc);
-      } else {
-        message.error("개인적인 이야기를 볼 수 없습니다");
-      }
-    });
+    another();
+
+    const detail = () => {
+      return axios.post("/api/post/getPersonalDetail", variable).then((res) => {
+        if (res.data.try) {
+          setPersonalDetail(res.data.doc);
+        } else {
+          message.error("개인적인 이야기를 볼 수 없습니다");
+        }
+      });
+    };
+
+    detail();
   }, []);
 
   return (
@@ -74,15 +84,18 @@ function PersonalDetailPage(props) {
             <hr />
             <ul>
               {PersonalAnother.map((value, index) => (
-                <a href={`${value._id}`}>
-                  <li key={index}>{value.title}</li>
-                </a>
+                // <a href={`${value._id}`}>
+                //   <li key={index}>{value.title}</li>
+                // </a>
+                <li key={index}>
+                  <a href={`${value._id}`}>{value.title}</a>
+                </li>
               ))}
             </ul>
           </div>
         </div>
         <Comment />
-        <OrderBar />
+        <OrderBar postId={postId} setpostId={setpostId} />
       </div>
     </article>
   );

@@ -2,20 +2,22 @@
 
 import React, { Suspense } from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
+
 import AsideBar from "./components/Footer/AsideBar";
 import FooterBar from "./components/Footer/FooterBar";
 import NavBar from "./components/Nav/NavBar";
-
-import LandingPage from "./components/LandingPage/section/LandingPage";
-import BookPage from "./components/LandingPage/section/BookPage";
-import GitPage from "./components/LandingPage/section/GitPage";
-import ReactPage from "./components/LandingPage/section/ReactPage";
-import SomethingPage from "./components/LandingPage/section/SomethingPage";
-import PersonalPage from "./components/LandingPage/section/PersonalPage";
-import JavascriptPage from "./components/LandingPage/section/JavascriptPage";
-import AlgorithmPage from "./components/LandingPage/section/AlgorithmPage";
 import UploadPage from "./components/UploadPage/UploadPage";
 import PersonalDetailPage from "./components/LandingPage/detail/PersonalDetailPage";
+
+import LandingPage from "./components/LandingPage/category/LandingPage";
+import BookPage from "./components/LandingPage/category/BookPage";
+import PersonalPage from "./components/LandingPage/category/PersonalPage";
+import SomethingPage from "./components/LandingPage/category/SomethingPage";
+import JavascriptPage from "./components/LandingPage/category/JavascriptPage";
+import ReactPage from "./components/LandingPage/category/ReactPage";
+import GitPage from "./components/LandingPage/category/ReactPage";
+import AlgorithmPage from "./components/LandingPage/category/AlgorithmPage";
+import OrderBar from "./components/LandingPage/detail/section/OrderBar";
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
             minHeight: "calc(100vh - 340px)",
           }}
         >
+          {console.log("듣고있냐?")}
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/personal" component={PersonalPage} />
@@ -43,6 +46,7 @@ function App() {
               path="/post/personal/:postId"
               component={PersonalDetailPage}
             />
+            <OrderBar />
           </Switch>
         </div>
 
