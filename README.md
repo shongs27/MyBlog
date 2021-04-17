@@ -28,5 +28,6 @@ SSR을 위해서 next.js를 사용해야한다 ?
 - [x] 백엔드 구현, 글 등록하기 / 4월 15일
 
 
-## 고칠 점
-git add . 가 아니라 git add -p로 해볼것ㅎ
+## 공부할 것
+리액트 불변성 유지?
+props.history.push()

@@ -9,37 +9,32 @@ function PersonalDetailPage(props) {
   const [postId, setpostId] = useState(`${props.match.params.postId}`);
   const [PersonalDetail, setPersonalDetail] = useState([]);
   const [PersonalAnother, setPersonalAnother] = useState([]);
-  const variable = { postId };
+
   // console.log("세부적인 항목", PersonalDetail);
   // console.log("다른 것들", PersonalAnother);
-  console.log("몇번쨰 재생되고 있니?", variable);
+
   useEffect(() => {
-    const another = () => {
-      return axios
-        .post("/api/post/getPersonalAnother", variable)
-        .then((res) => {
-          if (res.data.try) {
-            setPersonalAnother(res.data.doc);
-          } else {
-            console.log(res.data.err);
-          }
-        });
-    };
+    // 무한 렌더링 문제 -
+    // const variable이 상위 컨텍스트에 있음으로서 오류 발생
+    // hook으로서의 state가 아닌 값은 렌더링 다시 할때마다 값이 변한다
+    const variable = { postId };
 
-    another();
+    axios.post("/api/post/getPersonalAnother", variable).then((res) => {
+      if (res.data.try) {
+        setPersonalAnother(res.data.doc);
+      } else {
+        console.log(res.data.err);
+      }
+    });
 
-    const detail = () => {
-      return axios.post("/api/post/getPersonalDetail", variable).then((res) => {
-        if (res.data.try) {
-          setPersonalDetail(res.data.doc);
-        } else {
-          message.error("개인적인 이야기를 볼 수 없습니다");
-        }
-      });
-    };
-
-    detail();
-  }, []);
+    axios.post("/api/post/getPersonalDetail", variable).then((res) => {
+      if (res.data.try) {
+        setPersonalDetail(res.data.doc);
+      } else {
+        message.error("개인적인 이야기를 볼 수 없습니다");
+      }
+    });
+  }, [postId]);
 
   return (
     <article id="content">

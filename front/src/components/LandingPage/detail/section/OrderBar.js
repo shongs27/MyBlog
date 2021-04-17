@@ -15,15 +15,14 @@ function OrderBar(props) {
       }
     });
   }, []);
-
+  console.log(props);
   const onHandleLeft = () => {
     const index = PostId.findIndex((value) => value._id === props.postId) - 1;
 
-    //리렌더링이 일어나지 않는다.. 어떻게 해주어야 할까??
+    //it doesn't make re-redering... how can i do?
 
-    // props.setpostId(`${PostId[index]._id}`);
+    props.setpostId(`${PostId[index]._id}`);
     // props.history.push(`/post/personal/${PostId[index]._id}`);
-    props.history.push("/");
   };
   // const onHandleRight = () => {
   //   const index = PostId.findIndex((value) => value._id === props.postId) + 1;
