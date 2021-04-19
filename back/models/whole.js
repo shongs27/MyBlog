@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const SomethingSchema = mongoose.Schema(
+const wholeSchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -11,14 +11,10 @@ const SomethingSchema = mongoose.Schema(
     category: {
       type: String,
     },
-    dd: {
-      type: String,
-      require: true,
-    },
   },
   { timestamps: true }
 );
 
-const Something = mongoose.model("Something", SomethingSchema);
+const Whole = mongoose.model("Whole", wholeSchema);
 
-module.exports = { Something };
+module.exports = { Whole };

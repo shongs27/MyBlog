@@ -30,4 +30,10 @@ SSR을 위해서 next.js를 사용해야한다 ?
 
 ## 공부할 것
 리액트 불변성 유지?
-props.history.push()
+
+category - 
+back - 
+1. collection  전체 불러옴
+2. map 함수로 **excerpt 함수(새로만들기)** 적용 해서 title, 날짜, 프론트 전달
+front - 
+3. 주어진 것만 이쁘게 띄우기

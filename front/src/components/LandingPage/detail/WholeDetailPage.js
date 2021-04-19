@@ -5,28 +5,30 @@ import moment from "moment";
 import Comment from "./section/Comment";
 import OrderBar from "./section/OrderBar";
 
-function PersonalDetailPage(props) {
+function WholeDetailPage(props) {
   const [postId, setpostId] = useState(`${props.match.params.postId}`);
-  const [PersonalDetail, setPersonalDetail] = useState([]);
-  const [PersonalAnother, setPersonalAnother] = useState([]);
+  const [WholeDetail, setWholeDetail] = useState([]);
+  const [WholeAnother, setWholeAnother] = useState([]);
 
+  // console.log("세부적인 항목", WholeDetail);
+  // console.log("다른 것들", WholeAnother);
   useEffect(() => {
     // 무한 렌더링 문제 -
     // const variable이 상위 컨텍스트에 있음으로서 오류 발생
     // hook으로서의 state가 아닌 값은 렌더링 다시 할때마다 값이 변한다
     const variable = { postId };
 
-    axios.post("/api/post/getPersonalAnother", variable).then((res) => {
+    axios.post("/api/post/getWholeAnother", variable).then((res) => {
       if (res.data.try) {
-        setPersonalAnother(res.data.doc);
+        setWholeAnother(res.data.doc);
       } else {
         console.log(res.data.err);
       }
     });
 
-    axios.post("/api/post/getPersonalDetail", variable).then((res) => {
+    axios.post("/api/post/getWholeDetail", variable).then((res) => {
       if (res.data.try) {
-        setPersonalDetail(res.data.doc);
+        setWholeDetail(res.data.doc);
       } else {
         message.error("개인적인 이야기를 볼 수 없습니다");
       }
@@ -37,20 +39,20 @@ function PersonalDetailPage(props) {
     <article id="content">
       <div className="post-header">
         <h2>개인적인 이야기</h2>
-        <h1>{PersonalDetail.title}</h1>
+        <h1>{WholeDetail.title}</h1>
         <p>
-          {PersonalDetail.createdAt === PersonalDetail.updatedAt
-            ? moment(PersonalDetail.createdAt).format("MMMM Do YYYY, a h:mm")
-            : `${moment(PersonalDetail.createdAt).format(
-                "MMM Do YY"
-              )} | ${moment(PersonalDetail.updatedAt).format("MMM Do YY")}`}
+          {WholeDetail.createdAt === WholeDetail.updatedAt
+            ? moment(WholeDetail.createdAt).format("MMMM Do YYYY, a h:mm")
+            : `${moment(WholeDetail.createdAt).format("MMM Do YY")} | ${moment(
+                WholeDetail.updatedAt
+              ).format("MMM Do YY")}`}
         </p>
       </div>
       <div className="inner">
         <div className="post-item">
           <br />
           <br />
-          <p>{PersonalDetail.content}</p>
+          <p>{WholeDetail.content}</p>
         </div>
         {/* 좋아요 버튼 */}
 
@@ -75,7 +77,7 @@ function PersonalDetailPage(props) {
           <div className="anotherCategory__list">
             <hr />
             <ul>
-              {PersonalAnother.map((value, index) => (
+              {WholeAnother.map((value, index) => (
                 // <a href={`${value._id}`}>
                 //   <li key={index}>{value.title}</li>
                 // </a>
@@ -93,4 +95,4 @@ function PersonalDetailPage(props) {
   );
 }
 
-export default PersonalDetailPage;
+export default WholeDetailPage;

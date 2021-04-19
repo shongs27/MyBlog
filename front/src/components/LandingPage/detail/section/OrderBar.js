@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 
 function OrderBar(props) {
   const [PostId, setPostId] = useState([]);
-
   useEffect(() => {
     axios.get("/api/post/getAnotherPostId").then((res) => {
       if (res.data.try) {
@@ -15,22 +14,27 @@ function OrderBar(props) {
       }
     });
   }, []);
-  console.log(props);
+
   const onHandleLeft = () => {
     const index = PostId.findIndex((value) => value._id === props.postId) - 1;
 
     //it doesn't make re-redering... how can i do?
 
+    //첫번째 방법
     props.setpostId(`${PostId[index]._id}`);
-    // props.history.push(`/post/personal/${PostId[index]._id}`);
+    props.history.push(`/post/personal/${PostId[index]._id}`);
+
+    //두번쨰 방법 - <link>로 할 수 있나?
   };
-  // const onHandleRight = () => {
-  //   const index = PostId.findIndex((value) => value._id === props.postId) + 1;
-  //   props.setpostId(`${PostId[index]._id}`);
-  //   props.history.push(`/post/personal/${PostId[index]._id}`);
-  //   console.log("여기예요 ", PostId[index]._id);
-  //   return PostId[index]._id;
-  // };
+  const onHandleRight = () => {
+    const index = PostId.findIndex((value) => value._id === props.postId) + 1;
+
+    //it doesn't make re-redering... how can i do?
+
+    //첫번째 방법
+    props.setpostId(`${PostId[index]._id}`);
+    props.history.push(`/post/personal/${PostId[index]._id}`);
+  };
 
   return (
     <>
@@ -64,7 +68,10 @@ function OrderBar(props) {
           }
         })}
         &nbsp;
-        <RightOutlined style={{ paddingTop: "8px", fontSize: "1.5rem" }} />
+        <RightOutlined
+          onClick={onHandleRight}
+          style={{ paddingTop: "8px", fontSize: "1.5rem" }}
+        />
       </div>
     </>
   );

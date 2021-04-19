@@ -30,16 +30,16 @@ function App() {
             minHeight: "calc(100vh - 340px)",
           }}
         >
-          {console.log("듣고있냐?")}
+          {console.log("App.js렌더링!")}
           <Switch>
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/personal" component={PersonalPage} />
-            <Route exact path="/something" component={SomethingPage} />
-            <Route exact path="/javascript" component={JavascriptPage} />
-            <Route exact path="/react" component={ReactPage} />
-            <Route exact path="/git" component={GitPage} />
-            <Route exact path="/algorithm" component={AlgorithmPage} />
-            <Route exact path="/book" component={BookPage} />
+            <Route exact path="/post/personal" component={PersonalPage} />
+            <Route exact path="/post/something" component={SomethingPage} />
+            <Route exact path="/post/javascript" component={JavascriptPage} />
+            <Route exact path="/post/react" component={ReactPage} />
+            <Route exact path="/post/git" component={GitPage} />
+            <Route exact path="/post/algorithm" component={AlgorithmPage} />
+            <Route exact path="/post/book" component={BookPage} />
             <Route exact path="/post/upload" component={UploadPage} />
             <Route
               exact

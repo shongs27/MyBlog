@@ -4,6 +4,7 @@ const { Personal } = require("../models/personal");
 const { Something } = require("../models/Something");
 const { Javascript } = require("../models/Javascript");
 const { React } = require("../models/React");
+const { Whole } = require("../models/whole");
 
 router.get("/getAnotherPostId", (req, res) => {
   Personal.find()
@@ -31,12 +32,12 @@ router.post("/getPersonalDetail", (req, res) => {
 });
 
 router.post("/upload", (req, res) => {
-  console.log(req.body);
   const category = req.body.category;
-
+  const wholething = new Whole(req.body);
   switch (category) {
     case "Personal":
-      const personal = new Personal(req.body);
+      let personal = new Personal(req.body);
+      wholething.save();
       personal.save((err, doc) => {
         if (err) return res.json({ try: false, err });
         return res.status(200).json({
@@ -45,7 +46,9 @@ router.post("/upload", (req, res) => {
       });
       break;
     case "Something":
-      const something = new Something(req.body);
+      console.log("1첫째");
+      let something = new Something(req.body);
+      wholething.save();
       something.save((err, doc) => {
         if (err) return res.json({ try: false, err });
         return res.status(200).json({
@@ -54,7 +57,8 @@ router.post("/upload", (req, res) => {
       });
       break;
     case "Javascript":
-      const javascript = new Javascript(req.body);
+      let javascript = new Javascript(req.body);
+      wholething.save();
       javascript.save((err, doc) => {
         if (err) return res.json({ try: false, err });
         return res.status(200).json({
@@ -63,7 +67,8 @@ router.post("/upload", (req, res) => {
       });
       break;
     case "React":
-      const react = new React(req.body);
+      let react = new React(req.body);
+      wholething.save();
       react.save((err, doc) => {
         if (err) return res.json({ try: false, err });
         return res.status(200).json({
@@ -72,7 +77,8 @@ router.post("/upload", (req, res) => {
       });
       break;
     case "Git":
-      const git = new Git(req.body);
+      let git = new Git(req.body);
+      wholething.save();
       git.save((err, doc) => {
         if (err) return res.json({ try: false, err });
         return res.status(200).json({
