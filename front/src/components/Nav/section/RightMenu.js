@@ -6,26 +6,32 @@ function RightMenu() {
     <>
       <Menu mode="horizontal">
         <Menu.Item key="personal">
-          <a href="/personal">개인적인 이야기</a>
+          <a href="/post/personal">개인적인 이야기</a>
         </Menu.Item>
         <Menu.Item key="something">
-          <a href="/something">이것저것</a>
+          <a href="/post/something">이것저것</a>
         </Menu.Item>
         <Menu.Item key="javascript">
-          <a href="/javascript">JavaScript</a>
+          <a href="/post/javascript">JavaScript</a>
         </Menu.Item>
         <Menu.Item key="react">
-          <a href="/react">React</a>
+          <a href="/post/react">React</a>
         </Menu.Item>
         <Menu.Item key="git">
-          <a href="/git">Git</a>
+          <a href="/post/git">Git</a>
         </Menu.Item>
         <Menu.SubMenu title="Algorithm">
-          <Menu.Item>이론</Menu.Item>
-          <Menu.Item>문제풀이</Menu.Item>
+          <Menu.Item>
+            {" "}
+            <a href="/post/algorithm1">이론</a>
+          </Menu.Item>
+          <Menu.Item>
+            {" "}
+            <a href="/post/algorithm2">문제풀이</a>
+          </Menu.Item>
         </Menu.SubMenu>
         <Menu.Item key="book">
-          <a href="/book">도서</a>
+          <a href="/post/book">도서</a>
         </Menu.Item>
       </Menu>
     </>

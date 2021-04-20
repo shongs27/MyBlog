@@ -1,23 +1,52 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { message, Row, Col } from "antd";
 function ReactPage() {
+  const [ReactDetail, setReactDetail] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/post/getReactPage").then((res) => {
+      if (res.data.try) {
+        setReactDetail(res.data.doc);
+      } else {
+        message.error("useEffect 오류입니다");
+      }
+    });
+  }, []);
+
+  const renderList = ReactDetail.map((value, index) => {
+    let excerpt = value.content;
+    if (excerpt.length > 200) {
+      excerpt = excerpt.substring(0, 200) + "...";
+    }
+    return (
+      <div className="post-item">
+        <span
+          style={{
+            padding: "10px 0 0",
+            fontSize: "18px",
+            fontWeight: "700",
+          }}
+          className="title"
+        >
+          {value.title}
+        </span>
+        <p style={{ color: "#666" }} className="excerpt">
+          <span>{excerpt}</span>
+        </p>
+        <a className="more" href={`/post/${value.category}/${value._id}`}>
+          더보기&gt;
+        </a>
+      </div>
+    );
+  });
+
   return (
     <article id="content">
       <div className="post-header">
-        <h2>리액트</h2>
+        <h2>React</h2>
       </div>
-      <div className="inner">
-        <div className="post-item">
-          <a href="/156">
-            <span className="title">자바스크립트의 불변성</span>
-            <span className="excerpt">
-              일단 대충 이런이 이야기들을 하고 있다고
-              알아주세요어배ㅑ러뱌ㅐ러배러ㅐ뱌ㅓ래ㅑ버랩더래ㅑ버대랴ㅓ배랴ㅓ댜배러ㅐㅂ더ㅐ랴버ㅐㄷ러ㅐ뱌ㅓㄷ래ㅑ벌
-            </span>
-            <span className="more">더보기 ::after</span>
-          </a>
-        </div>
-      </div>
+      <div className="inner">{renderList}</div>
     </article>
   );
 }

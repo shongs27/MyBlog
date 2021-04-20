@@ -5,30 +5,27 @@ import moment from "moment";
 import Comment from "./section/Comment";
 import OrderBar from "./section/OrderBar";
 
-function WholeDetailPage(props) {
+function SomethingDetailPage(props) {
   const [postId, setpostId] = useState(`${props.match.params.postId}`);
-  const [WholeDetail, setWholeDetail] = useState([]);
-  const [WholeAnother, setWholeAnother] = useState([]);
+  const [SomethingDetail, setSomethingDetail] = useState([]);
+  const [SomethingAnother, setSomethingAnother] = useState([]);
 
-  // console.log("세부적인 항목", WholeDetail);
-  // console.log("다른 것들", WholeAnother);
+  console.log(SomethingDetail);
+  console.log(SomethingAnother);
   useEffect(() => {
-    // 무한 렌더링 문제 -
-    // const variable이 상위 컨텍스트에 있음으로서 오류 발생
-    // hook으로서의 state가 아닌 값은 렌더링 다시 할때마다 값이 변한다
     const variable = { postId };
 
-    axios.post("/api/post/getWholeAnother", variable).then((res) => {
+    axios.post("/api/post/getSomethingAnother", variable).then((res) => {
       if (res.data.try) {
-        setWholeAnother(res.data.doc);
+        setSomethingAnother(res.data.doc);
       } else {
         console.log(res.data.err);
       }
     });
 
-    axios.post("/api/post/getWholeDetail", variable).then((res) => {
+    axios.post("/api/post/getSomethingDetail", variable).then((res) => {
       if (res.data.try) {
-        setWholeDetail(res.data.doc);
+        setSomethingDetail(res.data.doc);
       } else {
         message.error("개인적인 이야기를 볼 수 없습니다");
       }
@@ -39,20 +36,20 @@ function WholeDetailPage(props) {
     <article id="content">
       <div className="post-header">
         <h2>개인적인 이야기</h2>
-        <h1>{WholeDetail.title}</h1>
+        <h1>{SomethingDetail.title}</h1>
         <p>
-          {WholeDetail.createdAt === WholeDetail.updatedAt
-            ? moment(WholeDetail.createdAt).format("MMMM Do YYYY, a h:mm")
-            : `${moment(WholeDetail.createdAt).format("MMM Do YY")} | ${moment(
-                WholeDetail.updatedAt
-              ).format("MMM Do YY")}`}
+          {SomethingDetail.createdAt === SomethingDetail.updatedAt
+            ? moment(SomethingDetail.createdAt).format("MMMM Do YYYY, a h:mm")
+            : `${moment(SomethingDetail.createdAt).format(
+                "MMM Do YY"
+              )} | ${moment(SomethingDetail.updatedAt).format("MMM Do YY")}`}
         </p>
       </div>
       <div className="inner">
         <div className="post-item">
           <br />
           <br />
-          <p>{WholeDetail.content}</p>
+          <p>{SomethingDetail.content}</p>
         </div>
         {/* 좋아요 버튼 */}
 
@@ -68,7 +65,7 @@ function WholeDetailPage(props) {
           style={{ border: "2px solid #e6e6e6" }}
         >
           <div className="anotherCategory__title">
-            <a href="/personal" style={{ color: "blue" }}>
+            <a href="/post/something" style={{ color: "blue" }}>
               '개인적인 이야기'
             </a>
             카테고리의 다른 글
@@ -77,10 +74,7 @@ function WholeDetailPage(props) {
           <div className="anotherCategory__list">
             <hr />
             <ul>
-              {WholeAnother.map((value, index) => (
-                // <a href={`${value._id}`}>
-                //   <li key={index}>{value.title}</li>
-                // </a>
+              {SomethingAnother.map((value, index) => (
                 <li key={index}>
                   <a href={`${value._id}`}>{value.title}</a>
                 </li>
@@ -95,4 +89,4 @@ function WholeDetailPage(props) {
   );
 }
 
-export default WholeDetailPage;
+export default SomethingDetailPage;

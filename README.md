@@ -28,12 +28,10 @@ SSR을 위해서 next.js를 사용해야한다 ?
 - [x] 백엔드 구현, 글 등록하기 / 4월 15일
 
 
-## 공부할 것
+## 해야할 것 것
 리액트 불변성 유지?
 
-category - 
-back - 
-1. collection  전체 불러옴
-2. map 함수로 **excerpt 함수(새로만들기)** 적용 해서 title, 날짜, 프론트 전달
-front - 
-3. 주어진 것만 이쁘게 띄우기
+1. detail 완성?
+   personalDetailPage를 위주로 수정중
+   <OrderBar>를 전면적으로 고쳐야 할듯
+2. 

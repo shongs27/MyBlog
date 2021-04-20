@@ -11,10 +11,6 @@ const SomethingSchema = mongoose.Schema(
     category: {
       type: String,
     },
-    dd: {
-      type: String,
-      require: true,
-    },
   },
   { timestamps: true }
 );

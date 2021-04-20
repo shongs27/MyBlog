@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
-const wholeSchema = mongoose.Schema(
+const LandingSchema = mongoose.Schema(
   {
     title: {
       type: String,
+      index: true,
     },
     content: {
       type: String,
@@ -15,6 +16,6 @@ const wholeSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const Whole = mongoose.model("Whole", wholeSchema);
+const Landing = mongoose.model("Landing", LandingSchema);
 
-module.exports = { Whole };
+module.exports = { Landing };

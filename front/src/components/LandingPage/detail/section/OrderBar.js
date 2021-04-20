@@ -4,7 +4,10 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 function OrderBar(props) {
+  console.log("바꿀거", props.AnotherPostId);
+
   const [PostId, setPostId] = useState([]);
+  console.log("바껴질거", PostId);
   useEffect(() => {
     axios.get("/api/post/getAnotherPostId").then((res) => {
       if (res.data.try) {

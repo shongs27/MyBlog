@@ -1,20 +1,52 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { message, Row, Col } from "antd";
 function LandingPage() {
+  const [LandingDetail, setLandingDetail] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/post/getLandingPage").then((res) => {
+      if (res.data.try) {
+        setLandingDetail(res.data.doc);
+      } else {
+        message.error("useEffect 오류입니다");
+      }
+    });
+  }, []);
+
+  const renderList = LandingDetail.map((value, index) => {
+    let excerpt = value.content;
+    if (excerpt.length > 200) {
+      excerpt = excerpt.substring(0, 200) + "...";
+    }
+    return (
+      <div className="post-item">
+        <span
+          style={{
+            padding: "10px 0 0",
+            fontSize: "18px",
+            fontWeight: "700",
+          }}
+          className="title"
+        >
+          {value.title}
+        </span>
+        <p style={{ color: "#666" }} className="excerpt">
+          <span>{excerpt}</span>
+        </p>
+        <a className="more" href={`/post/${value.category}/${value._id}`}>
+          더보기&gt;
+        </a>
+      </div>
+    );
+  });
+
   return (
     <article id="content">
       <div className="post-header">
         <h2>전체 글</h2>
       </div>
-      <div className="inner">
-        <div className="post-item">
-          <a href="/156">
-            <span className="title">렌딩</span>
-            <span className="excerpt">여기가 렌딩페이지</span>
-            <span className="more">더보기 ::after</span>
-          </a>
-        </div>
-      </div>
+      <div className="inner">{renderList}</div>
     </article>
   );
 }
