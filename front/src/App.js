@@ -34,7 +34,7 @@ function App() {
         >
           {console.log("App.js")}
           <Switch>
-            <Route exact path="/post/landing" component={LandingPage} />
+            <Route exact path="/" component={LandingPage} />
             <Route exact path="/post/personal" component={PersonalPage} />
             <Route exact path="/post/something" component={SomethingPage} />
             <Route exact path="/post/javascript" component={JavascriptPage} />

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 
 function PopularPost() {
-  return <div>MyComponent</div>;
+  return <div>인기 포스트</div>;
 }
 
 export default PopularPost;

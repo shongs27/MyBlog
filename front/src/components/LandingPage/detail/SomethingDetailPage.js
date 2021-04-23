@@ -10,8 +10,8 @@ function SomethingDetailPage(props) {
   const [SomethingDetail, setSomethingDetail] = useState([]);
   const [SomethingAnother, setSomethingAnother] = useState([]);
 
-  console.log(SomethingDetail);
-  console.log(SomethingAnother);
+  // console.log(SomethingDetail);
+  // console.log(SomethingAnother);
   useEffect(() => {
     const variable = { postId };
 

@@ -10,7 +10,7 @@ const NavBar = () => {
         <div className="menu__inner">
           <div className="menu__logo">
             <span>
-              <a href="/post/landing">발전하는 동적사이트</a>
+              <a href="/">발전하는 동적사이트</a>
             </span>
             &nbsp; &nbsp;
             <a href="https://github.com/shongs27">
