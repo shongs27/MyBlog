@@ -8,7 +8,9 @@ function LeftMenu() {
         <Menu.Item key="upload">
           <a href="/post/upload">업로드</a>
         </Menu.Item>
-        <Menu.Item key="logout">로그아웃</Menu.Item>
+        <Menu.Item key="logout">
+          <a href="/user/logout">로그아웃</a>
+        </Menu.Item>
       </Menu>
     </>
   );

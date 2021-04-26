@@ -5,6 +5,7 @@ const { Something } = require("../models/Something");
 const { Javascript } = require("../models/Javascript");
 const { React } = require("../models/React");
 const { Landing } = require("../models/Landing");
+const { LikeDislike } = require("../models/LikeDislike");
 
 //CategoryPage
 router.get("/getSomethingPage", (req, res) => {
@@ -128,6 +129,29 @@ router.post("/upload", (req, res) => {
   landing.save((err, doc) => {
     if (err) return res.json({ try: false, err });
     return res.status(200).json({ try: true });
+  });
+});
+
+router.get("/getUserID", (req, res) => {
+  Personal.find()
+    .limit(10)
+    .exec((err, doc) => {
+      if (err) return res.json({ try: false, err });
+      return res.status(200).json({ try: true, doc });
+    });
+});
+
+router.get("/LikesDislikes", (req, res) => {
+  const variable = {};
+  if (req.body.postId) {
+    variable = { postId: req.body.postId };
+  } else {
+    variable = { commentId: req.body.commentId };
+  }
+
+  LikeDislike.find(variable).exec((err, doc) => {
+    if (err) return res.json({ try: false, err });
+    console.log(doc, doc.length);
   });
 });
 

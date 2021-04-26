@@ -4,6 +4,7 @@ import { message, Button } from "antd";
 import moment from "moment";
 import Comment from "./section/Comment";
 import OrderBar from "./section/OrderBar";
+import LikeDislike from "./section/LikeDislike";
 
 function SomethingDetailPage(props) {
   const [postId, setpostId] = useState(`${props.match.params.postId}`);
@@ -52,11 +53,10 @@ function SomethingDetailPage(props) {
           <p>{SomethingDetail.content}</p>
         </div>
         {/* 좋아요 버튼 */}
+        <LikeDislike userId={localStorage.getItem("userId")} postId={postId} />
 
-        {/* 구독 버튼 */}
-        <Button type="primary" ghost>
-          구독
-        </Button>
+        {/* 구독 버튼 x */}
+
         <br />
         <br />
         <br />

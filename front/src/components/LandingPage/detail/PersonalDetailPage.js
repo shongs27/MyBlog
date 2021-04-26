@@ -4,6 +4,7 @@ import { message, Button } from "antd";
 import moment from "moment";
 import Comment from "./section/Comment";
 import OrderBar from "./section/OrderBar";
+import LikeDislike from "./section/LikeDislike";
 
 function PersonalDetailPage(props) {
   const [postId, setpostId] = useState(`${props.match.params.postId}`);
@@ -11,7 +12,7 @@ function PersonalDetailPage(props) {
   const [PersonalAnother, setPersonalAnother] = useState([]);
 
   // console.log(PersonalDetail);
-  console.log(PersonalAnother);
+  // console.log(PersonalAnother);
 
   useEffect(() => {
     // 무한 렌더링 문제 -
@@ -69,10 +70,9 @@ function PersonalDetailPage(props) {
         </div>
         {/* 좋아요 버튼 */}
 
+        <LikeDislike postId={postId} />
         {/* 구독 버튼 */}
-        <Button type="primary" ghost>
-          구독
-        </Button>
+
         <br />
         <br />
         <br />

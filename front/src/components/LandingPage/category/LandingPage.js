@@ -5,6 +5,20 @@ function LandingPage() {
   const [LandingDetail, setLandingDetail] = useState([]);
 
   useEffect(() => {
+    if (!document.cookie) {
+      let date = new Date(Date.now() + 86400e3);
+      // date = date.toGMTString();
+      document.cookie = "userId=hongs; expires=" + date;
+    }
+
+    axios.get("/api/post/getUserID").then((res) => {
+      if (res.data.try) {
+        localStorage.setItem("userId", res.data.doc);
+      } else {
+        message.error("User값을 받아오지 못했습니다");
+      }
+    });
+
     axios.get("/api/post/getLandingPage").then((res) => {
       if (res.data.try) {
         setLandingDetail(res.data.doc);
