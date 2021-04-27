@@ -5,11 +5,12 @@ function LandingPage() {
   const [LandingDetail, setLandingDetail] = useState([]);
 
   useEffect(() => {
-    if (!document.cookie) {
-      let date = new Date(Date.now() + 86400e3);
-      // date = date.toGMTString();
-      document.cookie = "userId=hongs; expires=" + date;
-    }
+    //입장권 나눠주기
+    // if (!document.cookie) {
+    //   let date = new Date(Date.now() + 86400e3);
+    //   date = date.toGMTString();
+    //   document.cookie = "userId=hongs; expires=" + date;
+    // }
 
     axios.get("/api/post/getUserID").then((res) => {
       if (res.data.try) {

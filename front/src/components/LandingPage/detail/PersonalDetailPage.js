@@ -39,7 +39,7 @@ function PersonalDetailPage(props) {
 
   //state값으로 주어야 하는건가???
   const AnotherPostId = [];
-  console.log(AnotherPostId);
+  // console.log(AnotherPostId);
   const AnotherList = PersonalAnother.map((value, index) => {
     AnotherPostId.push(value._id);
     return (

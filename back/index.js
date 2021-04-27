@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/api/post", require("./routes/posts"));
+app.use("/api/likedislike", require("./routes/LikesDislikes"));
 
 app.listen(8888, () => {
   console.log("잘 접속되었습니다");
