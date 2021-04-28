@@ -36,4 +36,42 @@ router.post("/uplike", (req, res) => {
   });
 });
 
+router.post("/unlike", (req, res) => {
+  Like.findOneAndDelete(req.body, (err, doc) => {
+    if (err) return res.send(err);
+    return res.status(200).json({ try: true });
+  });
+});
+
+router.post("/unDislike", (req, res) => {
+  Dislike.findOneAndDelete(req.body, (err, doc) => {
+    if (err) return res.send(err);
+    return res.status(200).json({ try: true });
+  });
+});
+
+router.post("/upDislike", (req, res) => {
+  const dislike = new Dislike(req.body);
+
+  dislike.save((err, doc) => {
+    if (err) return res.json({ try: false, err });
+
+    return res.status(200).json({ try: true });
+  });
+});
+
+router.post("/getDislikes", (req, res) => {
+  let variable = {};
+  if (req.body.postId) {
+    variable = { postId: req.body.postId };
+  } else {
+    variable = { commentId: req.body.commentId };
+  }
+
+  Dislike.find(variable).exec((err, doc) => {
+    if (err) return res.json({ try: false, err });
+    return res.status(200).json({ try: true, doc });
+  });
+});
+
 module.exports = router;

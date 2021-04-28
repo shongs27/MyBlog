@@ -32,25 +32,26 @@ SSR을 위해서 next.js를 사용해야한다 ?
 - 태그 만들기, 태그를 통해 검색할 수 있기
 리액트 불변성 유지?
 
-1. detail 완성?
++ detail 완성?
    personalDetailPage를 위주로 수정중
    <OrderBar>를 전면적으로 고쳐야 할듯
-2. <LikeDislike 만들기>
   
   
-   1. 불특정 다수의 좋아요 
-   ~~(1) 입장권 만들기
-   - 랜딩페이지
-   다른 사람이 첫 화면 (랜딩페이지)에 접속하면 **입장권** 나눠준다
-    -> cookie에 고유의 token&tokenExp을 생성해서 넣는다
-   - 좋아요 페이지
-   입장권을 받은 사람이 좋아요를 누르면 **whoIs**변수 데이터 베이스에 전송
-   const whoIs = {
-      passcheck : **입장권**
-      postId :       // postId와 commentId 둘 중 하나 입력됨 
-      commentId :
-   }~~
-   (2) localStorage에 임시로 저장
-   key값으로 영구 저장
-   key값 확인함으로써 좋아요 눌렀는지만 확인
-   
+ 1. <LikeDislike> 불특정 다수의 좋아요 
+ ~~(1) 입장권 만들기~~
+ - 랜딩페이지
+ 다른 사람이 첫 화면 (랜딩페이지)에 접속하면 **입장권** 나눠준다
+  -> cookie에 고유의 token&tokenExp을 생성해서 넣는다
+ - 좋아요 페이지
+ 입장권을 받은 사람이 좋아요를 누르면 **whoIs**변수 데이터 베이스에 전송
+ const whoIs = {
+    passcheck : **입장권**
+    postId :       // postId와 commentId 둘 중 하나 입력됨 
+    commentId :
+ }
+ 
+ **(2) localStorage에 임시로 저장
+ key값으로 영구 저장
+ key값 확인함으로써 좋아요 눌렀는지만 확인
+ 
+2. <Comment> 불특정 다수의 코멘트

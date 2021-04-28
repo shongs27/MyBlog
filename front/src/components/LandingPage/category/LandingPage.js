@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { message, Row, Col } from "antd";
+
 function LandingPage() {
   const [LandingDetail, setLandingDetail] = useState([]);
 
   useEffect(() => {
-    //입장권 나눠주기
-    // if (!document.cookie) {
-    //   let date = new Date(Date.now() + 86400e3);
-    //   date = date.toGMTString();
-    //   document.cookie = "userId=hongs; expires=" + date;
-    // }
+    // 입장권 나눠주기
+    // axios.get("https://api.ipify.org/?format=json").then((res) => {
+    //   const ip = res.data;
+    //   axios.post("/api/user/whoami", ip).then((res) => {
+    //     if (res.data.try) {
+
+    //     } else {
+    //       message.error('유저정보 저장 안됐음')
+    //     }
+    //   })
+    // });
+
+    if (!document.cookie) {
+      let date = new Date(Date.now() + 86400e3);
+      date = date.toGMTString();
+      document.cookie = "userId=hongs; expires=" + date;
+    }
 
     axios.get("/api/post/getUserID").then((res) => {
       if (res.data.try) {

@@ -19,6 +19,7 @@ const connect = mongoose
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use("/api/user", require("./routes/users"));
 app.use("/api/post", require("./routes/posts"));
 app.use("/api/likedislike", require("./routes/LikesDislikes"));
 
