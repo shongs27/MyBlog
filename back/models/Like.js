@@ -6,7 +6,8 @@ const LikeSchema = mongoose.Schema(
       type: String,
     },
     commentId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
     },
   },
   { timestamps: true }

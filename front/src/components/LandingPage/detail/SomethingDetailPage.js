@@ -53,7 +53,7 @@ function SomethingDetailPage(props) {
           <p>{SomethingDetail.content}</p>
         </div>
         {/* 좋아요 버튼 */}
-        <LikeDislike userId={localStorage.getItem("userId")} postId={postId} />
+        <LikeDislike postId={postId} />
 
         {/* 구독 버튼 x */}
 

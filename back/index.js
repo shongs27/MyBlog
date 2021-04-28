@@ -22,6 +22,7 @@ app.use(express.json());
 app.use("/api/user", require("./routes/users"));
 app.use("/api/post", require("./routes/posts"));
 app.use("/api/likedislike", require("./routes/LikesDislikes"));
+app.use("/api/comment", require("./routes/comments"));
 
 app.listen(8888, () => {
   console.log("잘 접속되었습니다");

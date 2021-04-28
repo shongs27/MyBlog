@@ -50,8 +50,10 @@ SSR을 위해서 next.js를 사용해야한다 ?
     commentId :
  }
  
- **(2) localStorage에 임시로 저장
- key값으로 영구 저장
- key값 확인함으로써 좋아요 눌렀는지만 확인
- 
-2. <Comment> 불특정 다수의 코멘트
+ **(2) localStorage / 데이터 베이스
+* 포스트의 경우 - LocalStorage : postId와 post-Dislike로 저장
+* 코멘트의 경우 - mongoose : CommentId를 저장
+  
+1. <Comment> 불특정 다수의 코멘트
+   싱글컴포넌트와 리플라이 컴포넌트 내 방식대로 일단 한번 만들어보기
+   

@@ -10,9 +10,11 @@ function PersonalDetailPage(props) {
   const [postId, setpostId] = useState(`${props.match.params.postId}`);
   const [PersonalDetail, setPersonalDetail] = useState([]);
   const [PersonalAnother, setPersonalAnother] = useState([]);
-
-  // console.log(PersonalDetail);
-  // console.log(PersonalAnother);
+  const [Comments, setComments] = useState([]);
+  console.log(Comments);
+  const refreshComments = (newComment) => {
+    setComments([...Comments, ...newComment]);
+  };
 
   useEffect(() => {
     // 무한 렌더링 문제 -
@@ -33,6 +35,13 @@ function PersonalDetailPage(props) {
         setPersonalDetail(res.data.doc);
       } else {
         message.error("개인적인 이야기를 볼 수 없습니다");
+      }
+    });
+
+    axios.post("/api/comment/getComment", variable).then((res) => {
+      if (res.data.try) {
+        console.log("현재 코멘터리들", res.data.comments);
+        setComments(res.data.comments);
       }
     });
   }, [postId]);
@@ -92,7 +101,11 @@ function PersonalDetailPage(props) {
             <ul>{AnotherList}</ul>
           </div>
         </div>
-        <Comment />
+        <Comment
+          postId={postId}
+          commentList={Comments}
+          refresh={refreshComments}
+        />
         <OrderBar
           postId={postId}
           setpostId={setpostId}

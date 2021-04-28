@@ -78,7 +78,7 @@ router.get("/getLandingPage", (req, res) => {
 router.post("/upload", (req, res) => {
   const category = req.body.category;
 
-  //각 카테고리 document들을
+  //각 카테고리에 저장
   let landing;
   switch (category) {
     case "Personal":
@@ -125,7 +125,7 @@ router.post("/upload", (req, res) => {
       console.log(`포스팅 저장할데가 없음`);
       break;
   }
-
+  //전체(landing)에 저장
   landing.save((err, doc) => {
     if (err) return res.json({ try: false, err });
     return res.status(200).json({ try: true });
