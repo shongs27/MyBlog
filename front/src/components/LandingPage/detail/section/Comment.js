@@ -48,11 +48,12 @@ function Comment(props) {
       <hr />
       {props.commentList.map(
         (value, index) =>
+          value.postId._id === props.postId &&
           !value.responseId && (
-            <>
+            <div key={index}>
               <SingleComment
                 postId={props.postId}
-                commentList={props.commentList}
+                comment={value}
                 refresh={props.refresh}
               />
               <ReplyComment
@@ -62,7 +63,7 @@ function Comment(props) {
                 //추가
                 commentId={value._id}
               />
-            </>
+            </div>
           )
       )}
 

@@ -15,8 +15,8 @@ router.post("/saveComment", (req, res) => {
     if (err) return res.send(err);
 
     Comment.find({ _id: comment._id })
-      .populate("postId")
-      .populate("responseId")
+      .populate("postId", "_id category")
+
       .exec((err, newComment) => {
         if (err) return res.send(err);
         return res.status(200).json({ try: true, newComment });
@@ -29,8 +29,8 @@ router.post("/saveComment", (req, res) => {
 
 router.post("/getComment", (req, res) => {
   Comment.find({ postId: req.body.postId })
-    .populate("postId")
-    .populate("responseId")
+    .populate("postId", "_id category")
+
     .exec((err, comments) => {
       if (err) return res.send(err);
       return res.status(200).json({ try: true, comments });

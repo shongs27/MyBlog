@@ -13,7 +13,7 @@ function PersonalDetailPage(props) {
   const [Comments, setComments] = useState([]);
   console.log(Comments);
   const refreshComments = (newComment) => {
-    setComments([...Comments, ...newComment]);
+    setComments((Comments) => [...Comments, ...newComment]);
   };
 
   useEffect(() => {
@@ -40,7 +40,6 @@ function PersonalDetailPage(props) {
 
     axios.post("/api/comment/getComment", variable).then((res) => {
       if (res.data.try) {
-        console.log("현재 코멘터리들", res.data.comments);
         setComments(res.data.comments);
       }
     });
