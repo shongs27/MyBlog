@@ -11,7 +11,6 @@ function PersonalDetailPage(props) {
   const [PersonalDetail, setPersonalDetail] = useState([]);
   const [PersonalAnother, setPersonalAnother] = useState([]);
   const [Comments, setComments] = useState([]);
-  console.log(Comments);
   const refreshComments = (newComment) => {
     setComments((Comments) => [...Comments, ...newComment]);
   };
@@ -77,9 +76,7 @@ function PersonalDetailPage(props) {
           <p>{PersonalDetail.content}</p>
         </div>
         {/* 좋아요 버튼 */}
-
         <LikeDislike postId={postId} />
-        {/* 구독 버튼 */}
 
         <br />
         <br />

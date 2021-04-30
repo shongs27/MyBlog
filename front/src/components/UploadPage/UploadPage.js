@@ -5,7 +5,7 @@ import { Typography, Form, Input, Button, message } from "antd";
 const { Title } = Typography;
 const { TextArea } = Input;
 
-function UploadPage() {
+function UploadPage(props) {
   const [PostTitle, setPostTitle] = useState("");
   const [Description, setDescription] = useState("");
   const [PostCategory, setPostCategory] = useState("Personal");
@@ -34,6 +34,7 @@ function UploadPage() {
     axios.post("/api/post/upload", Post).then((res) => {
       if (res.data.try) {
         message.success("성공적으로 업로드했습니다");
+        props.history.push("/");
       } else {
         message.error("실패했어");
       }

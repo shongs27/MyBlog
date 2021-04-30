@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Comment, Button, Tooltip, message } from "antd";
+import { Comment, Button, Tooltip, message, Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import moment from "moment";
 import LikeDislike from "./LikeDislike";
 import axios from "axios";
@@ -40,6 +41,7 @@ function SingleComment(props) {
       if (res.data.try) {
         props.refresh(res.data.newComment);
         message.info("comment 저장 잘됐어요");
+        setOpenReply(false);
       } else {
         message.error("comment2 저장 실패했어요");
       }
@@ -50,13 +52,19 @@ function SingleComment(props) {
     <div>
       <Comment
         actions={[
-          <LikeDislike />,
+          <LikeDislike commentId={comment._id} />,
           <span key="comment-nested-reply-to" onClick={HandleReply}>
             Reply to
           </span>,
         ]}
         author={<a>{comment.name}</a>}
         content={comment.content}
+        avatar={
+          <Avatar
+            style={{ backgroundColor: "#87d068" }}
+            icon={<UserOutlined />}
+          />
+        }
         datetime={
           <Tooltip
             title={moment(comment.createdAt).format("YYYY-MM-DD H:mm:ss")}

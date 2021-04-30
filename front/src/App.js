@@ -3,7 +3,7 @@
 import React, { Suspense } from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 
-import AsideBar from "./components/Footer/AsideBar";
+import BottomBar from "./components/Footer/BottomBar";
 import FooterBar from "./components/Footer/FooterBar";
 import NavBar from "./components/Nav/NavBar";
 import UploadPage from "./components/UploadPage/UploadPage";
@@ -81,7 +81,7 @@ function App() {
           </Switch>
         </div>
 
-        <AsideBar />
+        <BottomBar />
         <FooterBar />
       </Suspense>
     </BrowserRouter>

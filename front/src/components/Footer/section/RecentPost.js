@@ -5,7 +5,7 @@ function RecentPost() {
   const [RecentList, setRecentList] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/post/getLandingPage").then((res) => {
+    axios.get("/api/post/getRecentPage").then((res) => {
       if (res.data.try) {
         setRecentList(res.data.doc);
       }
@@ -13,7 +13,7 @@ function RecentPost() {
   }, []);
 
   const renderList = RecentList.map((value, index) => (
-    <li style={{ borderBottom: "1px solid #e6e6e6" }}>
+    <li key={index} style={{ borderBottom: "1px solid #e6e6e6" }}>
       <a
         style={{
           fontSize: "14px",

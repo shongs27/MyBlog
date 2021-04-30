@@ -4,8 +4,7 @@ import SingleComment from "./SingleComment";
 function ReplyComment(props) {
   const [IsOpen, setIsOpen] = useState(false);
   const [Views, setViews] = useState(0);
-  console.log(Views);
-  console.log(props.commentList);
+
   const OpenReply = () => {
     setIsOpen(!IsOpen);
   };
@@ -22,11 +21,22 @@ function ReplyComment(props) {
 
   return (
     <>
-      {Views > 0 && <div onClick={OpenReply}>View {Views} replies...</div>}
+      {Views > 0 && (
+        <div
+          style={{ fontWeight: "500", marginLeft: "20px" }}
+          onClick={OpenReply}
+        >
+          View {Views} replies...{" "}
+          {IsOpen ? (
+            <span style={{ color: "green" }}>[close]</span>
+          ) : (
+            <span style={{ color: "green" }}>[open]</span>
+          )}
+        </div>
+      )}
       {IsOpen &&
         props.commentList.map(
           (value, index) =>
-            value.responseId &&
             value.responseId === props.commentId && (
               <div style={{ marginLeft: "20px" }}>
                 <SingleComment

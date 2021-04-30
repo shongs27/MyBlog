@@ -16,7 +16,6 @@ router.post("/saveComment", (req, res) => {
 
     Comment.find({ _id: comment._id })
       .populate("postId", "_id category")
-
       .exec((err, newComment) => {
         if (err) return res.send(err);
         return res.status(200).json({ try: true, newComment });

@@ -54,6 +54,6 @@ SSR을 위해서 next.js를 사용해야한다 ?
 * 포스트의 경우 - LocalStorage : postId와 post-Dislike로 저장
 * 코멘트의 경우 - mongoose : CommentId를 저장
   
-1. <Comment> 불특정 다수의 코멘트
-   싱글컴포넌트와 리플라이 컴포넌트 내 방식대로 일단 한번 만들어보기
+2. <Comment> 불특정 다수의 코멘트
+3. [Fix] < 1 2 3 > 화살표 끝까지 갔을 경우 알림창 '더이상 포스트가 없습니다'
    

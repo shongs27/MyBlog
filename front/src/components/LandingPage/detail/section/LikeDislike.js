@@ -14,7 +14,6 @@ function LikeDislike(props) {
   const [DislikeAction, setDislikeAction] = useState(false);
 
   const variable = { postId: props.postId, commentId: props.commentId };
-  console.log(LikeAction);
 
   const handleLikeStorage = () => {
     const postId = localStorage.getItem("postId");

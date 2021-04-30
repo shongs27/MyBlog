@@ -1,10 +1,10 @@
 import React from "react";
 import PopularPost from "./section/PopularPost";
 import RecentPost from "./section/RecentPost";
-import Search from "./section/Search";
+import SearchPost from "./section/SearchPost";
 import Statics from "./section/Statics";
 
-function AsideBar() {
+function BottomBar() {
   return (
     <div
       style={{
@@ -25,11 +25,11 @@ function AsideBar() {
       >
         <RecentPost />
         <PopularPost />
-        <Search />
+        <SearchPost />
         <Statics />
       </div>
     </div>
   );
 }
 
-export default AsideBar;
+export default BottomBar;

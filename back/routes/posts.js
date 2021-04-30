@@ -66,13 +66,31 @@ router.get("/getAnotherPostId", (req, res) => {
     });
 });
 
-router.get("/getLandingPage", (req, res) => {
+router.get("/getPopularPage", (req, res) => {
+  Landing.find()
+    .sort("LikeNumber")
+    .limit(5)
+    .exec((err, popular) => {
+      if (err) return res.json({ try: false, err });
+      return res.status(200).json({ try: true, popular });
+    });
+});
+
+router.get("/getRecentPage", (req, res) => {
   Landing.find()
     .limit(10)
     .exec((err, doc) => {
       if (err) return res.json({ try: false, err });
-      return res.status(200).json({ try: true, doc });
+      return res.json({ try: true, doc });
     });
+});
+
+router.get("/getLandingPage", (req, res) => {
+  Landing.find()
+  .exec((err, doc) => {
+    if (err) return res.json({ try: false, err });
+    return res.json({ try: true, doc });
+  });
 });
 
 router.post("/upload", (req, res) => {

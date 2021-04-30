@@ -12,6 +12,9 @@ const LandingSchema = mongoose.Schema(
     category: {
       type: String,
     },
+    LikeNumber: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
