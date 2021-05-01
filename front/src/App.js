@@ -21,6 +21,8 @@ import OrderBar from "./components/LandingPage/detail/section/OrderBar";
 import PersonalDetailPage from "./components/LandingPage/detail/PersonalDetailPage";
 import SomethingDetailPage from "./components/LandingPage/detail/SomethingDetailPage";
 
+import SearchPage from "./components/LandingPage/category/SearchPage";
+
 function App() {
   return (
     <BrowserRouter>
@@ -45,7 +47,8 @@ function App() {
             <Route exact path="/post/upload" component={UploadPage} />
 
             {/* /////////// */}
-
+            <Route exact path="/post/searchedPage/" component={SearchPage} />
+            {/* ///////////// */}
             <Route
               exact
               path="/post/personal/:postId"

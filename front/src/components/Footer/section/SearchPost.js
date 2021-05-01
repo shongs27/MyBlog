@@ -1,22 +1,39 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Input } from "antd";
 import axios from "axios";
+import { Link, withRouter } from "react-router-dom";
 const { Search } = Input;
 
-function SearchPost() {
-  axios.get("/api/post/getLandingPage").then((res) => {
-    const targetText = "개인적인이야기11";
-    res.data.doc.map((posts) => {
-      const text = Object.values(posts);
-      //text는 배열이 된 내용값
-      console.log(text);
-      console.log(text.find((v) => v === targetText));
-      //완전히 일치해야만 하는 find
-      //포함되었는지만 확인하려면 for문을 직접 돌리자=> 배열 특정 문자 확인 검색
-    });
-  });
+function SearchPost(props) {
+  const [TargetText, setTargetText] = useState(null);
+  const SearchPost = useRef([]);
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      //업데이트 시에만 !!
+      axios.get("/api/post/getLandingPage").then((res) => {
+        //**프론트에서 원하는 포스트 검색하기**
+        const searched = res.data.doc.map((post) => {
+          //text 배열 - 각 포스트 내용을 모아둠
+          const text = Object.values(post);
+          // 1번 방법 - text 합친다음에 string.includes하고 있으면 return post
+          const realText = text.join("").toUpperCase();
+          return realText.includes(TargetText) && post;
+        });
+        SearchPost.current = searched.filter((v) => v !== false);
+        props.history.push({
+          pathname: "/post/searchedPage/",
+          state: { SearchPost },
+        });
+      });
+    }
+  }, [TargetText]);
 
-  const onSearch = () => {};
+  const onSearch = (t) => {
+    setTargetText(t);
+  };
 
   return (
     <Search
@@ -28,4 +45,4 @@ function SearchPost() {
   );
 }
 
-export default SearchPost;
+export default withRouter(SearchPost);
