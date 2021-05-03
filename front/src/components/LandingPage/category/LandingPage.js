@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { message, Row, Col } from "antd";
 import { Link } from "react-router-dom";
-
 function LandingPage() {
   const [LandingDetail, setLandingDetail] = useState([]);
 
