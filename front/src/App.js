@@ -16,7 +16,6 @@ import JavascriptPage from "./components/LandingPage/category/JavascriptPage";
 import ReactPage from "./components/LandingPage/category/ReactPage";
 import GitPage from "./components/LandingPage/category/ReactPage";
 import AlgorithmPage from "./components/LandingPage/category/AlgorithmPage";
-import OrderBar from "./components/LandingPage/detail/section/OrderBar";
 
 import PersonalDetailPage from "./components/LandingPage/detail/PersonalDetailPage";
 import SomethingDetailPage from "./components/LandingPage/detail/SomethingDetailPage";
@@ -47,15 +46,13 @@ function App() {
             <Route exact path="/post/upload" component={UploadPage} />
 
             {/* /////////// */}
-            <Route exact path="/post/searchedPage/" component={SearchPage} />
+            <Route path="/post/searchedPage/" component={SearchPage} />
             {/* ///////////// */}
             <Route
-              exact
               path="/post/personal/:postId"
               component={PersonalDetailPage}
             />
             <Route
-              exact
               path="/post/something/:postId"
               component={SomethingDetailPage}
             />
@@ -80,7 +77,20 @@ function App() {
               path="/post/algorithm/:postId"
               component={PersonalDetailPage}
             /> */}
-            <OrderBar />
+            <Route
+              render={() => (
+                <div
+                  style={{
+                    padding: "20px",
+                    width: "280px",
+                    margin: "0 auto",
+                    fontWeight: "bold",
+                  }}
+                >
+                  페이지를 찾을 수 없습니다
+                </div>
+              )}
+            />
           </Switch>
         </div>
 

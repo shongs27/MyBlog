@@ -34,9 +34,9 @@ function GitPage() {
         <p style={{ color: "#666" }} className="excerpt">
           <span>{excerpt}</span>
         </p>
-        <a className="more" href={`/post/${value.category}/${value._id}`}>
+        <Link className="more" to={`/post/${value.category}/${value._id}`}>
           더보기&gt;
-        </a>
+        </Link>
       </div>
     );
   });

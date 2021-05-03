@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Input } from "antd";
 import axios from "axios";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 const { Search } = Input;
 
 function SearchPost(props) {
   const [TargetText, setTargetText] = useState(null);
   const SearchPost = useRef([]);
   const mounted = useRef(false);
+
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true;
@@ -25,7 +26,7 @@ function SearchPost(props) {
         SearchPost.current = searched.filter((v) => v !== false);
         props.history.push({
           pathname: "/post/searchedPage/",
-          state: { SearchPost },
+          state: { SearchPost, TargetText },
         });
       });
     }

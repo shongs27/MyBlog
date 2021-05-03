@@ -7,6 +7,8 @@ import OrderBar from "./section/OrderBar";
 import LikeDislike from "./section/LikeDislike";
 
 function PersonalDetailPage(props) {
+  console.log(props);
+
   const [postId, setpostId] = useState(`${props.match.params.postId}`);
   const [PersonalDetail, setPersonalDetail] = useState([]);
   const [PersonalAnother, setPersonalAnother] = useState([]);

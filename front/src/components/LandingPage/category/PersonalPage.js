@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { message, Row, Col } from "antd";
+import { Link, Route } from "react-router-dom";
+import PersonalDetailPage from "../detail/PersonalDetailPage";
+
 function PersonalPage() {
   const [PersonalDetail, setPersonalDetail] = useState([]);
 
@@ -34,20 +37,22 @@ function PersonalPage() {
         <p style={{ color: "#666" }} className="excerpt">
           <span>{excerpt}</span>
         </p>
-        <a className="more" href={`/post/${value.category}/${value._id}`}>
+        <Link className="more" to={`/post/${value.category}/${value._id}`}>
           더보기&gt;
-        </a>
+        </Link>
       </div>
     );
   });
 
   return (
-    <article id="content">
-      <div className="post-header">
-        <h2>개인적인 이야기</h2>
-      </div>
-      <div className="inner">{renderList}</div>
-    </article>
+    <>
+      <article id="content">
+        <div className="post-header">
+          <h2>개인적인 이야기</h2>
+        </div>
+        <div className="inner">{renderList}</div>
+      </article>
+    </>
   );
 }
 
